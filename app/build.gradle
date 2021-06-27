@@ -8,6 +8,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
+        ndkVersion = "22.1.7171670"
         applicationId "com.example.sharemycar"
         minSdkVersion 16
         targetSdkVersion 30
