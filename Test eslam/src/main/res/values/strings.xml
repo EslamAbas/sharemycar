@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">Share My Car</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="onboarding1_title">Employee rides</string>
+    <string name="onboarding1_text">Take the work out of work-related trips. Create ground travel and commute programs for employees.</string>
+    <string name="onboarding2_title">Courtesy rides</string>
+    <string name="onboarding2_text">Aim to impress. Arrange door-to-door rides for your customers, clients, and guests.</string>
+    <string name="onboarding3_title">Our commitment to your safety</string>
+    <string name="onboarding3_text">We are committed to working to create a safe environment for our users.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="sign_up">Sign Up</string>
+    <string name="last_name">Last Name</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="first_name">First Name</string>
+    <string name="user_sign_up">User Sign Up</string>
+    <string name="registration">Registration</string>
+    <string name="login">Login</string>
+    <string name="user_login">User Login</string>
+    <string name="empty_email">Please Enter Your Email</string>
+    <string name="wrong_email">Enter Correct Email example@example.com</string>
+    <string name="f_name_emplty">Please Enter Your First Name</string>
+    <string name="l_name_empty">Please Enter Your Last Name</string>
+    <string name="empty_pass">Please Enter Your Password</string>
+    <string name="short_pass">Password Must Be At Least 6 Characters</string>
+    <string name="embty_phone">Please Enter Your Phone Number</string>
+    <string name="incorrect_phone">Your Phone Number is not Correct</string>
+    <string name="wrong_email_and_pass">Email or Password is Wrong</string>
+    <string name="driver_login">Driver Login</string>
+    <string name="driver_registration">Driver Registration</string>
+    <string name="register">Register</string>
+    <string name="car_color">Car Color</string>
+    <string name="car_type">Car Type</string>
+    <string name="car_license">Car license</string>
+    <string name="driver_license">Driver License</string>
+    <string name="drugs_test">Drugs Test</string>
+    <string name="email_used">Email Is Already Used</string>
+    <string name="empty_car_type">Please Enter Your Car Type</string>
+    <string name="empty_car_color">Please Enter Your Car Color</string>
+    <string name="logout">Logout</string>
+    <string name="call_driver">Call Driver</string>
+    <string name="getting_driver">Getting your Driver..</string>
+    <string name="pickup_here">Pickup Here</string>
+    <string name="looking_for_driver">Looking for Driver Location ....</string>
+    <string name="driver_found">Driver Found</string>
+    <string name="pickup_location">PickUp Location</string>
+    <string name="your_driver">Your Driver</string>
+    <string name="driver_here">Driver\'s Here</string>
+</resources>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_true_white">
+
+    <TextView
+        android:id="@+id/first_text"
+        android:layout_width="175dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="102dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20sp"
+        android:fontFamily="@font/poppins_semibold"
+        android:includeFontPadding="false"
+        android:text="@string/onboarding1_title"
+        android:textColor="@color/background_almost_black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@id/onboarding_image"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/descreption_textview"
+        android:layout_width="175dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins_light"
+        android:includeFontPadding="false"
+        android:text="@string/onboarding1_text"
+        android:textColor="@color/background_almost_black"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@id/onboarding_image"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/first_text" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descreption_textview">
+
+        <TextView
+            android:id="@+id/first_dot"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:background="@drawable/green_dot"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/second_dot"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="3.1dp"
+            android:layout_marginLeft="3.1dp"
+            android:background="@drawable/grey_dot"
+            app:layout_constraintStart_toEndOf="@id/first_dot"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="3.1dp"
+            android:layout_marginLeft="3.1dp"
+            android:background="@drawable/grey_dot"
+            app:layout_constraintStart_toEndOf="@id/second_dot"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/onboarding_image"
+        android:layout_width="170dp"
+        android:layout_height="268dp"
+        android:layout_marginTop="70dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_car"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
