@@ -8,8 +8,11 @@ public class Constants {
     public static final String DRIVER = "Drivers";
     public static final String DRIVER_AVAILABLE = "DriversAvailable";
     public static final String CUSTOMER_REQUEST = "CustomerRequest";
-    public static final String CUSTOMER_RIDE_ID= "CustomerRideId";
+    public static final String CUSTOMER_RIDE_ID= "customerRideId";
     public static final String DRIVER_WORKING= "DriverWorking";
+    public static final String CAR_TYPE= "carType";
+    public static final String LICENCE= "Licence";
+    public static final String CUSTOMER_OR_DRIVER= "CustomerOrDriver";
     public static final int REQUEST_LOCATION = 123;
 
 

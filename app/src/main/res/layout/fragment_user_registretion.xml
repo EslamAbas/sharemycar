@@ -112,7 +112,7 @@
         android:layout_marginLeft="10dp"
         android:background="@color/transparent"
         android:scaleType="center"
-        android:src="@drawable/ic_back"
+        android:src="@drawable/ic_arrow_left"
         android:tint="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

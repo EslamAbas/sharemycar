@@ -50,4 +50,6 @@
     <string name="title_activity_driver_map">Map</string>
     <string name="title_activity_user_map">Map</string>
     <string name="driver_arrived">Driver Arrived</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.sharemycar.DriverMapActivity;
 import com.example.sharemycar.R;
 import com.example.sharemycar.UserLoginActivity;
 import com.example.sharemycar.UserMapActivity;
@@ -22,6 +24,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import static com.example.sharemycar.Constants.ACCOUNTS;
+import static com.example.sharemycar.Constants.DRIVER;
+import static com.example.sharemycar.Constants.GET_UID;
+import static com.example.sharemycar.Constants.USER;
 
 
 public class UserLoginFragment extends Fragment {
@@ -82,11 +94,39 @@ public class UserLoginFragment extends Fragment {
                             if (!task.isSuccessful()) {
                                 mEmail.setError(getString(R.string.wrong_email_and_pass));
                                 mPassword.setError(getString(R.string.wrong_email_and_pass));
+                                Log.println(Log.ERROR,"Sign in error",task.getException().getMessage());
                                 Toast.makeText(getContext(), "Sign in error", Toast.LENGTH_SHORT).show();
                             } else {
-                                Intent i = new Intent(getContext(), UserMapActivity.class);
-                                startActivity(i);
-                                getActivity().finish();
+                                final String id = GET_UID();
+                                FirebaseDatabase firebaseDatabase;
+                                final DatabaseReference databaseReference;
+
+                                firebaseDatabase = FirebaseDatabase.getInstance();
+                                databaseReference = firebaseDatabase.getReference();
+
+                                databaseReference.child(ACCOUNTS).child(USER).addListenerForSingleValueEvent(
+                                        new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                                if (dataSnapshot.hasChild(id)) {
+                                                    Intent i = new Intent(getContext(), UserMapActivity.class);
+                                                    startActivity(i);
+                                                    getActivity().finish();
+                                                } else {
+
+                                                    mEmail.setError(getString(R.string.wrong_email_and_pass));
+                                                    mPassword.setError(getString(R.string.wrong_email_and_pass));
+                                                    Toast.makeText(getContext(), "Sign in error", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+
+
+                                        });
                             }
                         }
                     });

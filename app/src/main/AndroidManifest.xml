@@ -47,7 +47,7 @@
         <activity android:name=".DriverLoginActivity" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDkAkZaVvjibeN7F8Bxl1ckpauys2YfHjs" />
+            android:value="@string/google_api_key" />
     </application>
 
 

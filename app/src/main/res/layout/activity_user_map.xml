@@ -138,12 +138,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Vehicles"
-                        android:id="@+id/UberBlack"/>
+                        android:id="@+id/Vehicles"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Trucks"
-                        android:id="@+id/UberXl"/>
+                        android:id="@+id/Trucks"/>
                 </RadioGroup>
 
                 <Button

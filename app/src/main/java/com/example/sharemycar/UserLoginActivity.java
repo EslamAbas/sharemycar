@@ -33,17 +33,6 @@ public class UserLoginActivity extends AppCompatActivity {
         transaction.replace(R.id.user_container, fragment).commit();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            Intent i = new Intent(this, UserMapActivity.class);
-            startActivity(i);
-            finish();
-
-        }
-    }
 
     @Override
     public void onBackPressed() {

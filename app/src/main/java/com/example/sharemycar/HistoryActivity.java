@@ -23,6 +23,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import static com.example.sharemycar.Constants.ACCOUNTS;
+import static com.example.sharemycar.Constants.CUSTOMER_OR_DRIVER;
+
 public class HistoryActivity extends AppCompatActivity {
     private String customerOrDriver,userId;
     private RecyclerView  mHistoryRecyclerView;
@@ -38,7 +41,7 @@ public class HistoryActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_left);
         getSupportActionBar().setElevation(5);
 
         mHistoryRecyclerView = (RecyclerView) findViewById(R.id.historyRecyclerView);
@@ -49,7 +52,7 @@ public class HistoryActivity extends AppCompatActivity {
         mHistoryAdapter = new HistoryAdapter(getDataSetHistory(),HistoryActivity.this);
         mHistoryRecyclerView.setAdapter(mHistoryAdapter);
 
-        customerOrDriver = getIntent().getExtras().getString("customerOrDriver");
+        customerOrDriver = getIntent().getExtras().getString(CUSTOMER_OR_DRIVER);
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         getUserHistoryIds();
 
@@ -66,7 +69,7 @@ public class HistoryActivity extends AppCompatActivity {
     }
 
     private void getUserHistoryIds() {
-        DatabaseReference userHistoryDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(customerOrDriver).child(userId).child("history");
+        DatabaseReference userHistoryDatabase = FirebaseDatabase.getInstance().getReference().child(ACCOUNTS).child(customerOrDriver).child(userId).child("history");
         userHistoryDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
