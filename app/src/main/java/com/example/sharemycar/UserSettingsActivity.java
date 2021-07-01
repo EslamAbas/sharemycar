@@ -19,25 +19,29 @@ import java.util.Map;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import static com.example.sharemycar.Constants.ACCOUNTS;
+import static com.example.sharemycar.Constants.USER;
+
 public class UserSettingsActivity extends AppCompatActivity {
 
-    private EditText mNameField, mPhoneField;
+    private EditText mFirstName,mLastName, mPhoneField;
 
     private Button mBack, mConfirm;
 
     private FirebaseAuth mAuth;
     private DatabaseReference mUserDatabase;
     private String userID;
-    private String mName;
+    private String first_name;
+    private String last_name;
     private String mPhone;
 
-    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_settings);
 
-        mNameField = (EditText) findViewById(R.id.name);
+        mFirstName = (EditText) findViewById(R.id.first_name_u_s);
+        mLastName = (EditText) findViewById(R.id.last_name_u_s);
         mPhoneField = (EditText) findViewById(R.id.phone);
 
         mBack = (Button)findViewById(R.id.back);
@@ -46,7 +50,7 @@ public class UserSettingsActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         userID = mAuth.getCurrentUser().getUid();
-        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child("Users").child(userID);
+        mUserDatabase = FirebaseDatabase.getInstance().getReference().child(ACCOUNTS).child(USER).child(userID);
         getUserInfo();
         mConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,12 +75,16 @@ public class UserSettingsActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists() && dataSnapshot.getChildrenCount()>0){
                     Map<String,Object> map = (Map<String, Object>) dataSnapshot.getValue();
-                    if(map.get("name")!=null){
-                        mName = map.get("name").toString();
-                        mNameField.setText(mName);
+                    if(map.get("first_Name")!=null){
+                        first_name = map.get("first_Name").toString();
+                        mFirstName.setText(first_name);
                     }
-                    if(map.get("phone")!=null){
-                        mPhone = map.get("phone").toString();
+                    if(map.get("last_name")!=null){
+                        first_name = map.get("last_name").toString();
+                        mFirstName.setText(first_name);
+                    }
+                    if(map.get("phone_Number")!=null){
+                        mPhone = map.get("phone_Number").toString();
                         mPhoneField.setText(mPhone);
                     }
 
@@ -92,12 +100,14 @@ public class UserSettingsActivity extends AppCompatActivity {
     }
 
     private void saveUserInformation() {
-        mName = mNameField.getText().toString();
+        first_name = mFirstName.getText().toString();
+        last_name = mLastName.getText().toString();
         mPhone = mPhoneField.getText().toString();
 
         Map userInfo = new HashMap();
-        userInfo.put("name",mName);
-        userInfo.put("Phone",mPhone);
+        userInfo.put("first_Name", first_name);
+        userInfo.put("last_name", last_name);
+        userInfo.put("phone_Number",mPhone);
         mUserDatabase.updateChildren(userInfo);
 
         finish();

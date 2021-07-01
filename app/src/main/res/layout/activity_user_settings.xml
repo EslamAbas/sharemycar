@@ -8,18 +8,27 @@
     android:orientation="vertical"
     android:padding="20sp">
     <EditText
-        android:id="@+id/name"
+        android:id="@+id/first_name_u_s"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:hint="Name"
+        android:hint="@string/first_name"
         android:layout_marginBottom="20sp"/>
+
+    <EditText
+        android:id="@+id/last_name_u_s"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20sp"
+        android:background="@null"
+        android:hint="@string/last_name" />
+
     <EditText
         android:id="@+id/phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:hint="Phone"
+        android:hint="@string/phone_number"
         android:layout_marginBottom="20sp"
         android:inputType="number"/>
     <Button

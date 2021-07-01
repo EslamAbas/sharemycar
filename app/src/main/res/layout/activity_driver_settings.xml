@@ -7,13 +7,23 @@
     tools:context=".UserSettingsActivity"
     android:orientation="vertical"
     android:padding="20sp">
+
     <EditText
-        android:id="@+id/name"
+        android:id="@+id/firsst_name_d_s"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20sp"
         android:background="@null"
-        android:hint="Name"
-        android:layout_marginBottom="20sp"/>
+        android:hint="@string/first_name" />
+
+    <EditText
+        android:id="@+id/last_name_d_s"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20sp"
+        android:background="@null"
+        android:hint="@string/last_name" />
+
     <EditText
         android:id="@+id/phone"
         android:layout_width="match_parent"
@@ -22,13 +32,6 @@
         android:hint="Phone"
         android:layout_marginBottom="20sp"
         android:inputType="number"/>
-    <EditText
-        android:id="@+id/car"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:hint="Car"
-        android:layout_marginBottom="20sp"/>
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,7 +40,7 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Motorbikes"
+            android:text="Motorcycle"
             android:id="@+id/Motorbikes"/>
         <RadioButton
             android:layout_width="wrap_content"
