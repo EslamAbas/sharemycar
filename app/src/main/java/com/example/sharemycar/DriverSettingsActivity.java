@@ -1,5 +1,6 @@
 package com.example.sharemycar;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,33 +21,30 @@ import java.util.Map;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import static com.example.sharemycar.Constants.ACCOUNTS;
-import static com.example.sharemycar.Constants.CAR_TYPE;
-import static com.example.sharemycar.Constants.DRIVER;
-
 public class DriverSettingsActivity extends AppCompatActivity {
 
-    private EditText mFirstName, mPhoneField, mLastName;
+    private EditText mNameField, mPhoneField,mCarField;
 
     private Button mBack, mConfirm;
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDriverDatabase;
     private String userID;
-    private String first_name;
+    private String mName;
     private String mPhone;
-    private String last_name;
-    private String type;
+    private String mCar;
+    private String mService;
     private RadioGroup mRadioGroup;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_settings);
 
-        mFirstName = (EditText) findViewById(R.id.firsst_name_d_s);
-        mLastName = (EditText) findViewById(R.id.last_name_d_s);
+        mNameField = (EditText) findViewById(R.id.name);
         mPhoneField = (EditText) findViewById(R.id.phone);
+        mCarField = (EditText) findViewById(R.id.car);
         mRadioGroup = (RadioGroup)findViewById(R.id.radioGroup);
         mBack = (Button)findViewById(R.id.back);
 
@@ -54,7 +52,7 @@ public class DriverSettingsActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         userID = mAuth.getCurrentUser().getUid();
-        mDriverDatabase = FirebaseDatabase.getInstance().getReference().child(ACCOUNTS).child(DRIVER).child(userID);
+        mDriverDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child("Drivers").child(userID);
         getUserInfo();
         mConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,22 +77,22 @@ public class DriverSettingsActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists() && dataSnapshot.getChildrenCount()>0){
                     Map<String,Object> map = (Map<String, Object>) dataSnapshot.getValue();
-                    if(map.get("first_Name")!=null){
-                        first_name = map.get("first_Name").toString();
-                        mFirstName.setText(first_name);
+                    if(map.get("name")!=null){
+                        mName = map.get("name").toString();
+                        mNameField.setText(mName);
                     }
                     if(map.get("phone")!=null) {
                         mPhone = map.get("phone").toString();
                         mPhoneField.setText(mPhone);
                     }
-                        if(map.get("last_Name")!=null){
-                            last_name = map.get("last_Name").toString();
-                            mLastName.setText(last_name);
+                        if(map.get("car")!=null){
+                            mCar = map.get("car").toString();
+                            mCarField.setText(mCar);
                     }
-                    if(map.get("car_Type")!=null){
-                        type = map.get("car_Type").toString();
-                        switch (type){
-                            case "Motorcycle":
+                    if(map.get("service")!=null){
+                        mService = map.get("service").toString();
+                        switch (mService){
+                            case "Motorbikes":
                                 mRadioGroup.check(R.id.Motorbikes);
                                 break;
                             case "Vehicles":
@@ -119,9 +117,9 @@ public class DriverSettingsActivity extends AppCompatActivity {
     }
 
     private void saveUserInformation() {
-        first_name = mFirstName.getText().toString();
+        mName = mNameField.getText().toString();
         mPhone = mPhoneField.getText().toString();
-        last_name = mLastName.getText().toString();
+        mCar = mCarField.getText().toString();
 
         int selectId = mRadioGroup.getCheckedRadioButtonId();
         final RadioButton radioButton = (RadioButton) findViewById(selectId);
@@ -130,13 +128,13 @@ public class DriverSettingsActivity extends AppCompatActivity {
             return;
         }
 
-        type = radioButton.getText().toString();
+        mService = radioButton.getText().toString();
 
         Map userInfo = new HashMap();
-        userInfo.put("first_Name", first_name);
-        userInfo.put("last_Name", last_name);
+        userInfo.put("name",mName);
         userInfo.put("phone",mPhone);
-        userInfo.put("car_Type", type);
+        userInfo.put("car",mCar);
+        userInfo.put("service",mService);
 
         mDriverDatabase .updateChildren(userInfo);
 
